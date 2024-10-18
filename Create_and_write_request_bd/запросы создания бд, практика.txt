@@ -1,0 +1,21 @@
+CREATE TABLE teachers (
+	id_teacher SERIAL PRIMARY KEY,
+	tsurname VARCHAR(100) NOT NULL,
+	tname VARCHAR(100) NOT NULL,
+	tpatronymic VARCHAR(100) NOT NULL,
+	tnickname VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE groups (
+	id_group SERIAL PRIMARY KEY,
+	gname VARCHAR(50) NOT NULL,
+	teacher_id INTEGER REFERENCES teachers(id_teacher)
+);
+
+CREATE TABLE students (
+	id_student SERIAL PRIMARY KEY,
+	stsurname VARCHAR(100) NOT NULL,
+	stname VARCHAR(100) NOT NULL,
+	stpatronymic VARCHAR(100) NOT NULL,
+	group_id INTEGER REFERENCES groups(id_group)
+);
